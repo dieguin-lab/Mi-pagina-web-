@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Desafío Propagación del Error</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background: #f4f7f8;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  header {
+    background: #0d6efd;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+  h1 {
+    margin: 5px 0;
+  }
+  #titulo {
+    background: #6c757d;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  #botones {
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  button {
+    padding: 10px 20px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #084cd9;
+  }
+  #resultado {
+    flex-grow: 1;
+    margin: 15px;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+  }
+  #resultado.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .mensaje {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>Nombre Completo: Juan Pérez Gómez</div>
+  <div>Número de Cédula: 1234567890</div>
+</header>
+
+<div id="titulo">DESAFÍO RESOLUCIÓN DE PROBLEMAS MEDIANTE EL ANÁLISIS DE PROPAGACIÓN DEL ERROR</div>
+
+<div id="botones">
+  <button onclick="mostrarProblema(1)">Problema 1</button>
+  <button onclick="mostrarProblema(2)">Problema 2</button>
+</div>
+
+<div id="resultado"></div>
+
+<script>
+  const contenido = {
+    1: {
+      mensaje: "Problema 1: Propagación de error en velocidad de caída del paracaidista",
+      texto: `
+        <p class="mensaje">Se calcula la velocidad en t=6s usando la fórmula con una incertidumbre en c de ±1.5.</p>
+        <p>La velocidad estimada es 23.45 m/s con un error aproximado de ±0.75 m/s.</p>`,
+      imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Parachuting_style.svg/512px-Parachuting_style.svg.png"
+    },
+    2: {
+      mensaje: "Problema 2: Estimación de edad con decaimiento radioactivo de Carbono-14",
+      texto: `
+        <p class="mensaje">Se determina la edad estimada de una huella antigua con 77.45% del carbono-14 original.</p>
+        <p>La edad estimada es de 1832 años (redondeada al próximo año).</p>`,
+      imagen: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Radiocarbon_Dating.svg/512px-Radiocarbon_Dating.svg.png"
+    }
+  };
+
+  function mostrarProblema(num) {
+    const resultadoDiv = document.getElementById("resultado");
+    resultadoDiv.classList.remove("visible");
+    setTimeout(() => {
+      const prob = contenido[num];
+      resultadoDiv.innerHTML = `<h2>${prob.mensaje}</h2>${prob.texto}<img src="${prob.imagen}" alt="Imagen Problema ${num}" />`;
+      resultadoDiv.classList.add("visible");
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
+
